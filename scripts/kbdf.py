@@ -3,11 +3,13 @@
 """
 
 Installation:
-    Dependency:
-        pip install pyautogui
-        pip install pyperclip
-        Install 'xclip' on Linux with your package manager
-    Make it executable:
+    Install it via `pip install kbdf`
+    or manualy:
+        Install dependency:
+            pip install pyautogui
+            pip install pyperclip
+            Install 'xclip' on Linux
+    You can make it executable on Linux:
         chmod +x kbdf.py
 
 Usage:
@@ -33,14 +35,11 @@ RU = "ёйцукенгшщзхъфывапролджэячсмитьбю.ЁЙЦ�
 EN_RU = str.maketrans(EN, RU)
 RU_EN = str.maketrans(RU, EN)
 
-if __name__ == "__main__":
-    arg = '--line'
-    if len(sys.argv) > 1:
-        arg = sys.argv[1]
 
+def main(mode='--line'):
     clipboard_backup = clipboard.paste()
 
-    if arg != '--selection':
+    if mode != '--selection':
         pyautogui.hotkey('shiftleft', 'home')
 
     pyautogui.hotkey('ctrl', 'c')
@@ -48,7 +47,16 @@ if __name__ == "__main__":
     text = clipboard.paste()
 
     result = []
-    for word in text.split(" "):
+    splitted = text.split(" ")
+    if not splitted:
+        clipboard.copy(clipboard_backup)
+        return
+
+    if mode == '--word':
+        result = splitted[:-1]
+        splitted = splitted[-1:]
+
+    for word in splitted:
         try:
             first = word[0]
         except:
@@ -68,3 +76,10 @@ if __name__ == "__main__":
     time.sleep(0.01)
 
     clipboard.copy(clipboard_backup)
+
+
+if __name__ == "__main__":
+    mode = '--line'
+    if len(sys.argv) > 1:
+        mode = sys.argv[1]
+    main(mode)

@@ -11,6 +11,4 @@ setup(
     url='https://github.com/alexantoshuk/kbdf',
     author='Alexander Antoshuk',
     author_email='alexander.antoshuk@gmail.com',
-
-
 )
