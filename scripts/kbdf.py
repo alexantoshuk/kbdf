@@ -96,7 +96,7 @@ def main(mode='line'):
 
 
 if __name__ == "__main__":
-    mode = 'selection'
+    mode = 'line'
     if len(sys.argv) > 1:
         mode = sys.argv[1]
     main(mode)
