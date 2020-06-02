@@ -13,11 +13,12 @@ Installation:
         chmod +x kbdf.py
 
 Usage:
-    python kbdf.py [args]
-    args:
-        --line: translate line (default)
-        --word: translate word
-        --selection: translate selected text
+    
+    `kbdf.py line` - translate last typed line (default)
+
+    `kbdf.py word` - translate last typed word
+
+    `kbdf.py selection` - translate selected text
     
     Just bind it to some hotkey!
 
@@ -36,10 +37,10 @@ EN_RU = str.maketrans(EN, RU)
 RU_EN = str.maketrans(RU, EN)
 
 
-def main(mode='--line'):
+def main(mode='line'):
     clipboard_backup = clipboard.paste()
 
-    if mode != '--selection':
+    if mode != 'selection':
         pyautogui.hotkey('shiftleft', 'home')
 
     pyautogui.hotkey('ctrl', 'c')
@@ -52,7 +53,7 @@ def main(mode='--line'):
         clipboard.copy(clipboard_backup)
         return
 
-    if mode == '--word':
+    if mode == 'word':
         result = splitted[:-1]
         splitted = splitted[-1:]
 
@@ -79,7 +80,7 @@ def main(mode='--line'):
 
 
 if __name__ == "__main__":
-    mode = '--line'
+    mode = 'line'
     if len(sys.argv) > 1:
         mode = sys.argv[1]
     main(mode)
