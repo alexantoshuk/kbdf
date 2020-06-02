@@ -6,7 +6,7 @@ kbdf is a simple python script to translate text that was typed accidentally in 
 Limitations
 ============
 For now it can switch only between Russian and English keyboard layouts.
-Not work in terminal (except if terminal support to select line by shift+home).
+Not work in terminal (except if terminal support to select line by `shift+home` and copy/paste by `ctrl+c/ctrl+v`).
 
 Install
 ============
@@ -39,3 +39,13 @@ You must bind it to some hotkey
 
 `kbdf.py selection` - translate selected text
 
+
+How it works
+=============
+1) Backup current clipboard content.
+2) Emit `shift+home` for line selection (in line/word mode).
+3) Emit `ctrl+c` to copy selection to clipboard.
+4) Get clipboard content and translate text word by word.
+5) Write translated text to clipboard.
+6) Emit `ctrl+v` to replace selection with clipboard content.
+7) Restore clipboard from backup.
