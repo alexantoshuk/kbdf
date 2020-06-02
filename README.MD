@@ -6,24 +6,22 @@ kbdf is a simple python script to translate text that was typed accidentally in 
 Limitations
 ============
 For now it can switch only between Russian and English keyboard layouts.
-Not work in terminal (except if terminal support to select line by `shift+home` and copy/paste by `ctrl+c/ctrl+v`).
+Not work in terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+c</kbd> <kbd>ctrl+v</kbd>).
 
 Install
 ============
-kbdf supports Python 2 and 3.
-
+kbdf supports Python 2 and 3.<br/>
 You can install kbdf using pip:
 
 `pip install git+https://github.com/alexantoshuk/kbdf`
 
-Or manually download kbdf.py and make it executable:
+Or manually download [kbdf.py](https://github.com/alexantoshuk/kbdf/blob/master/kbdf.py) and make it executable:
 
 `cmod +x kbdf.py`
 
 ...and install python dependencies:
 
-`pip install pyautogui`
-
+`pip install pyautogui`<br/>
 `pip install pyperclip`
 
 Also Linux needs the xclip installed.
@@ -33,19 +31,17 @@ Example Usage
 =============
 You must bind it to some hotkey
 
-`kbdf.py line` - translate last typed line (default)
-
-`kbdf.py word` - translate last typed word
-
-`kbdf.py selection` - translate selected text
+`kbdf.py line` - translate last typed line (default)<br/>
+`kbdf.py word` - translate last typed word<br/>
+`kbdf.py selection` - translate selected text<br/>
 
 
 How it works
 =============
 1) Backup current clipboard content.
-2) Emit `shift+home` for line selection (in line/word mode).
-3) Emit `ctrl+c` to copy selection to clipboard.
+2) Emit <kbd>shift+home</kbd> for line selection (in line/word mode).
+3) Emit <kbd>ctrl+c</kbd> to copy selection to clipboard.
 4) Get clipboard content and translate text word by word.
 5) Write translated text to clipboard.
-6) Emit `ctrl+v` to replace selection with clipboard content.
+6) Emit <kbd>ctrl+v</kbd> to replace selection with clipboard content.
 7) Restore clipboard from backup.
