@@ -1,15 +1,15 @@
 kbdf
 =========
-
 kbdf is a simple python script to translate text that was typed accidentally in wrong keyboard layout
+
 
 Limitations
 ============
 For now it can switch only between Russian and English keyboard layouts!
 
-Installation
-============
 
+Install
+============
 kbdf supports Python 2 and 3.
 
 You can install kbdf using pip:
