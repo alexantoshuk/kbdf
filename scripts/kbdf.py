@@ -3,7 +3,7 @@
 """
 
 Installation:
-    Install it via `pip install kbdf`
+    Install it with pip: pip install git+https://github.com/alexantoshuk/kbdf
     or manualy:
         Install dependency:
             pip install pyautogui
