@@ -37,6 +37,14 @@ EN_RU = str.maketrans(EN, RU)
 RU_EN = str.maketrans(RU, EN)
 
 
+def is_RU(word):
+    chars = "ёйцукенгшщзхъфывапролджэячсмитьбю"
+    for char in word.lower():
+        if char in chars:
+            return True
+    return False
+
+
 def main(mode='line'):
     clipboard_backup = clipboard.paste()
 
@@ -45,29 +53,37 @@ def main(mode='line'):
 
     pyautogui.hotkey('ctrl', 'c')
     time.sleep(0.05)
-    text = clipboard.paste()
+    _text = clipboard.paste()
 
-    result = []
-    splitted = text.split(" ")
-    if not splitted:
+    text = _text.rstrip(' ')
+    trailing_spaces = len(_text) - len(text)
+
+    if not text:
         clipboard.copy(clipboard_backup)
         return
 
-    if mode == 'word':
-        result = splitted[:-1]
-        splitted = splitted[-1:]
+    word_list = iter(text.split(" "))
+    word_list = ["".join([" ", next(word_list)])
+                 if not w else w for w in word_list]
+    if not word_list:
+        clipboard.copy(clipboard_backup)
+        return
 
-    for word in splitted:
-        try:
-            first = word[0]
-        except:
-            continue
-        if first in EN:
-            word = word.translate(EN_RU)
-        elif first in RU:
+    result = []
+    if mode == 'word':
+        result = word_list[:-1]
+        word_list = word_list[-1:]
+
+    for word in word_list:
+        if is_RU(word):
             word = word.translate(RU_EN)
+        else:
+            word = word.translate(EN_RU)
 
         result.append(word)
+
+    if trailing_spaces:
+        result.append(" "*trailing_spaces)
 
     text = " ".join(result)
 
@@ -80,7 +96,7 @@ def main(mode='line'):
 
 
 if __name__ == "__main__":
-    mode = 'line'
+    mode = 'selection'
     if len(sys.argv) > 1:
         mode = sys.argv[1]
     main(mode)
