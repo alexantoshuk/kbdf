@@ -5,8 +5,8 @@ kbdf is a simple python script to translate text that was typed accidentally in 
 
 Limitations
 ============
-For now it can switch only between Russian and English keyboard layouts!
-
+For now it can switch only between Russian and English keyboard layouts.
+Not work in terminal (except if terminal support to select line by shift+home).
 
 Install
 ============
