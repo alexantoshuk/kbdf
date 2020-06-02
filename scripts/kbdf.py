@@ -1,16 +1,13 @@
-#!python
-
 """
-
-Installation:
+Install:
     Install it with pip: pip install git+https://github.com/alexantoshuk/kbdf
     or manualy:
         Install dependency:
             pip install pyautogui
             pip install pyperclip
             Install 'xclip' on Linux
-    You can make it executable on Linux:
-        chmod +x kbdf.py
+        Make kbdf.py executable on Linux:
+            chmod +x kbdf.py
 
 Usage:
     
@@ -50,6 +47,7 @@ def main(mode='line'):
 
     if mode != 'selection':
         pyautogui.hotkey('shiftleft', 'home')
+        time.sleep(0.05)
 
     pyautogui.hotkey('ctrl', 'c')
     time.sleep(0.05)
