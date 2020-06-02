@@ -15,7 +15,7 @@ You can install kbdf using pip:
 
 `pip install git+https://github.com/alexantoshuk/kbdf`
 
-Or manually download [kbdf.py](https://github.com/alexantoshuk/kbdf/blob/master/kbdf.py) and make it executable:
+Or manually download [kbdf.py](https://raw.githubusercontent.com/alexantoshuk/kbdf/master/scripts/kbdf.py) and make it executable:
 
 `cmod +x kbdf.py`
 
