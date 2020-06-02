@@ -44,7 +44,7 @@ def main(mode='line'):
         pyautogui.hotkey('shiftleft', 'home')
 
     pyautogui.hotkey('ctrl', 'c')
-    time.sleep(0.01)
+    time.sleep(0.05)
     text = clipboard.paste()
 
     result = []
@@ -74,7 +74,7 @@ def main(mode='line'):
     clipboard.copy(text)
 
     pyautogui.hotkey('ctrl', 'v')
-    time.sleep(0.01)
+    time.sleep(0.05)
 
     clipboard.copy(clipboard_backup)
 
