@@ -9,12 +9,17 @@ Installation
 kbdf supports Python 2 and 3.
 
 You can install kbdf using pip:
+
 `pip install git+https://github.com/alexantoshuk/kbdf`
 
 Or manually download kbdf.py and make it executable:
+
 `cmod +x kbdf.py`
+
 ...and install python dependencies:
+
 `pip install pyautogui`
+
 `pip install pyperclip`
 
 Also Linux needs the xclip installed.
