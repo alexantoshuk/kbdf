@@ -1,3 +1,5 @@
+#!python
+
 """
 Install:
     Install it with pip: pip install git+https://github.com/alexantoshuk/kbdf
