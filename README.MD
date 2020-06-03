@@ -2,7 +2,6 @@ kbdf
 =========
 kbdf is a simple python script to translate text that was typed accidentally in wrong keyboard layout
 
-
 Limitations
 ============
 For now it can switch only between Russian and English keyboard layouts.
@@ -45,3 +44,12 @@ How it works
 5) Write translated text to clipboard.
 6) Emit <kbd>ctrl+v</kbd> to replace selection with clipboard content.
 7) Restore clipboard from backup.
+
+
+Alternatives
+============
+The alternatives is much more functional, but goal of this project is simplicity and functionality on Linux and Windows. 
+
+[PuntoSwitcher (windows only)](https://yandex.ru/soft/punto/)<br/>
+[XNeur  (linux only)](https://xneur.ru/)
+
