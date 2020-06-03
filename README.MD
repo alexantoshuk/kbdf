@@ -48,7 +48,7 @@ How it works
 
 Alternatives
 ============
-The alternatives is much more functional, but goal of this project is simplicity and functionality on Linux and Windows. 
+The alternatives is much more functional, but goal of this project is simplicity and functionality on Linux and Windows. And in my opinion, automatic switching creates more problems than it solves. 
 
 [PuntoSwitcher (windows only)](https://yandex.ru/soft/punto/)<br/>
 [XNeur  (linux only)](https://xneur.ru/)
