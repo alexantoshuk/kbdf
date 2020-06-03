@@ -5,9 +5,9 @@ KBDF
 
 Limitations
 ============
-For now it can switch only between Russian and English keyboard layouts.
-It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+c</kbd> <kbd>ctrl+v</kbd>).
-
+* For now it can switch only between Russian and English keyboard layouts.
+* It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+c</kbd> <kbd>ctrl+v</kbd>).
+* You can't bind this script to hotkeys with <kbd>alt</kbd>, <kbd>shift</kbd> or <kbd>super</kbd> modifiers. So I recommend to use <kbd>F12</kbd> for `kbdf.py line` and <kbd>ctrl+F12</kbd> for `kbdf.py selection`.
 
 Install
 ============
