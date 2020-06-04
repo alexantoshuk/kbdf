@@ -1,17 +1,18 @@
 KBDF
 =========
-**kbdf** is a simple python script to translate text that was typed accidentally in wrong keyboard layout
+**kbdf** is a simple python script to translate text that was typed accidentally in wrong keyboard layout.<br/>
+**kbdf** is an abbreviation for `Keyboard F**k` :)
 
 
 Limitations
 ============
 * For now it can switch only between Russian and English keyboard layouts.
 * It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+c</kbd> <kbd>ctrl+v</kbd>).
-* You can't bind this script to hotkeys with <kbd>alt</kbd>, <kbd>shift</kbd> or <kbd>super</kbd> modifiers. So I recommend to use <kbd>F12</kbd> for `kbdf.py line` and <kbd>ctrl+F12</kbd> for `kbdf.py selection`.
+* Undefined behavior when bind this script to hotkeys with <kbd>super</kbd> modifier.
 
 Install
 ============
-**kbdf** supports Python 2 and 3 on Windows and Linux.<br/>
+**kbdf** supports Python 2 and 3 on Windows(not tested yet) and Linux.<br/>
 You can install it using pip:
 
 `pip install git+https://github.com/alexantoshuk/kbdf`

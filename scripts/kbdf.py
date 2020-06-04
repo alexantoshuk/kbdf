@@ -44,8 +44,16 @@ def is_RU(word):
     return False
 
 
+def up_modifiers():
+    pyautogui.press(['ctrl']*2)
+    pyautogui.press(['alt']*2)
+    pyautogui.press(['shift']*2)
+
+
 def main(mode='line'):
     clipboard_backup = clipboard.paste()
+
+    up_modifiers()
 
     if mode != 'selection':
         pyautogui.hotkey('shiftleft', 'home')
