@@ -4,12 +4,6 @@ KBDF
 **kbdf** is an abbreviation for `Keyboard F**k` :)
 
 
-Limitations
-============
-* For now it can switch only between Russian and English keyboard layouts.
-* It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+c</kbd> <kbd>ctrl+v</kbd>).
-* Undefined behavior when bind this script to hotkeys with <kbd>super</kbd> modifier.
-
 Install
 ============
 **kbdf** supports Python 2 and 3 on Windows(not tested yet) and Linux.<br/>
@@ -49,6 +43,13 @@ Simple!
 5) Write translated text to clipboard.
 6) Emit <kbd>ctrl+v</kbd> to replace selection with clipboard content.
 7) Restore clipboard content from backup.
+
+
+Limitations
+============
+* For now it can switch only between Russian and English keyboard layouts.
+* It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+c</kbd> <kbd>ctrl+v</kbd>).
+* Undefined behavior when bind this script to hotkeys with <kbd>super</kbd> modifier.
 
 
 Alternatives
