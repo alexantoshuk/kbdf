@@ -101,7 +101,7 @@ def main(mode='line'):
 
     """ Set Hotkey for Keyboard Layout switch after translation
     """
-    # pyautogui.hotkey('altleft', 'shiftleft') # Uncomment this
+    # pyautogui.hotkey('ctrlleft', 'shiftleft') # Uncomment this
     """
     """
     clipboard.copy(clipboard_backup)
