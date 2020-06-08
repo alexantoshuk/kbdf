@@ -1,5 +1,5 @@
-#!python
-
+#!python3
+# -*- coding: utf-8 -*-
 """
 Install:
     Install it with pip: pip install git+https://github.com/alexantoshuk/kbdf
@@ -28,9 +28,8 @@ import pyperclip as clipboard
 import time
 import sys
 
-
-EN = "`qwertyuiop[]asdfghjkl;'zxcvbnm,./~QWERTYUIOP{}ASDFGHJKL:\"ZXCVBNM<>?"
-RU = "ёйцукенгшщзхъфывапролджэячсмитьбю.ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,"
+EN = """`qwertyuiop[]asdfghjkl;'zxcvbnm,./~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?"""
+RU = """ёйцукенгшщзхъфывапролджэячсмитьбю.ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,"""
 
 EN_RU = str.maketrans(EN, RU)
 RU_EN = str.maketrans(RU, EN)

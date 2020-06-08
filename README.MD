@@ -6,7 +6,7 @@ KBDF
 
 Install
 ============
-**kbdf** supports Python 2 and 3 on Windows(not tested yet) and Linux.<br/>
+**kbdf** supports Python3 on Linux and Windows(not tested yet).<br/>
 You can install it using pip:
 
 `pip install git+https://github.com/alexantoshuk/kbdf`
