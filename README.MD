@@ -1,7 +1,6 @@
 KBDF
 =========
 **kbdf** is a simple python script to translate text that was typed accidentally in wrong keyboard layout.<br/>
-**kbdf** is an abbreviation for `Keyboard F**k` :)
 
 
 Install
