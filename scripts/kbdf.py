@@ -107,6 +107,7 @@ def main(mode='line'):
     """
 
     clipboard.copy(clipboard_backup)
+    time.sleep(0.05)
 
 
 if __name__ == "__main__":
