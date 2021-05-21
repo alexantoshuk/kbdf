@@ -101,7 +101,7 @@ def main(mode='line'):
 
     """ Set Hotkey for Keyboard Layout switch after translation
     """
-    pyautogui.hotkey('superleft', 'space')  # Uncomment this
+    # pyautogui.hotkey('capslock')  # Uncomment this
     time.sleep(0.05)
     """
     """
