@@ -27,7 +27,6 @@ Example Usage
 You must bind it to some hotkey
 
 `kbdf.py line` - translate last typed line, or selection if exists (default)<br/>
-`kbdf.py word` - translate last typed word<br/>
 `kbdf.py selection` - translate selected text<br/>
 
 
@@ -36,7 +35,7 @@ How it works
 Simple!
 
 1) Backup current clipboard content.
-2) Emit <kbd>shift+home</kbd> for line selection (in line/word mode only).
+2) Emit <kbd>shift+home</kbd> for line selection (in 'line' mode only).
 3) Emit <kbd>ctrl+c</kbd> to copy selection to clipboard.
 4) Get clipboard content and translate text word by word.
 5) Write translated text to clipboard.

@@ -13,9 +13,7 @@ Install:
 
 Usage:
     
-    `kbdf.py line` - translate last typed line (default)
-
-    `kbdf.py word` - translate last typed word
+    `kbdf.py line` - translate last typed line, or selection if exists (default)
 
     `kbdf.py selection` - translate selected text
     
@@ -43,7 +41,10 @@ def is_RU(word):
     return False
 
 
-def up_modifiers():
+def release_modifiers():
+    """
+    Double press modifiers keys to prevent some strange bugs
+    """
     pyautogui.press(['ctrl'] * 2)
     # pyautogui.press(['alt']*2)
     pyautogui.press(['shift'] * 2)
@@ -55,11 +56,10 @@ def select_text():
 
 
 def get_selected_text():
-    clipboard.copy("")
+    clipboard.copy('')  # empty clipboard
     pyautogui.hotkey('ctrl', 'c')
     time.sleep(0.05)
-    _text = clipboard.paste()
-    return _text
+    return clipboard.paste()
 
 
 def insert_text(text):
@@ -69,66 +69,47 @@ def insert_text(text):
 
 
 def switch_keyboard_layout():
-    pyautogui.hotkey('capslock')  # Change to your keyboard combo
+    pyautogui.hotkey('capslock')  # change it to your keyboard combo
     time.sleep(0.05)
 
 
-def main(mode='line'):
-    # save current clipboard content
-    clipboard_backup = clipboard.paste()
-
-    up_modifiers()
-
-    _text = None
-    if mode != 'selection':
-        if mode == 'line':
-            _text = get_selected_text()
-
-        if not _text:
-            select_text()
-
-    if not _text:
-        _text = get_selected_text()
-
-    text = _text.rstrip(' ')
-    trailing_spaces = len(_text) - len(text)
-
-    if not text:
-        # restore clipboard content
-        clipboard.copy(clipboard_backup)
+def translate(text):
+    text_ = text.rstrip(' ')
+    if not text_:
         return
 
-    words = iter(text.split(" "))
-    words = ["".join([" ", next(words)])
-             if not w else w for w in words]
+    trailing_spaces_num = len(text) - len(text_)
+    words_iter = iter(text_.split(' '))
+    words = [''.join([' ', next(words)]) if not w else w for w in words_iter]
+
     if not words:
-        # restore clipboard content
-        clipboard.copy(clipboard_backup)
         return
 
-    result = []
-    if mode == 'word':
-        result = words[:-1]
-        words = words[-1:]
+    result = [word.translate(RU_EN) if is_RU(
+        word) else word.translate(EN_RU) for word in words]
 
-    for word in words:
-        if is_RU(word):
-            word = word.translate(RU_EN)
-        else:
-            word = word.translate(EN_RU)
+    if trailing_spaces_num:
+        result.append(' ' * trailing_spaces_num)
 
-        result.append(word)
+    return ' '.join(result)
 
-    if trailing_spaces:
-        result.append(" " * trailing_spaces)
 
-    text = " ".join(result)
+def main(mode='line'):
+    clipboard_backup = clipboard.paste()  # save current clipboard content
 
-    insert_text(text)
-    switch_keyboard_layout()
+    release_modifiers()
 
-    # restore clipboard content
-    clipboard.copy(clipboard_backup)
+    text = get_selected_text()
+    if (mode == 'line') and (not text):
+        select_text()
+        text = get_selected_text()
+
+    translated_text = translate(text)
+    if translated_text:
+        insert_text(translated_text)
+        switch_keyboard_layout()
+
+    clipboard.copy(clipboard_backup)  # restore clipboard content
 
 
 if __name__ == "__main__":
