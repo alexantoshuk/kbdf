@@ -69,8 +69,6 @@ def insert_text(text):
 
 
 def switch_keyboard_layout():
-    """ Set Hotkey for Keyboard Layout switch after translation
-    """
     pyautogui.hotkey('capslock')  # Change to your keyboard combo
     time.sleep(0.05)
     """
