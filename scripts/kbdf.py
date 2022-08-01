@@ -79,8 +79,8 @@ def translate(text):
         return
 
     trailing_spaces_num = len(text) - len(text_)
-    words_iter = iter(text_.split(' '))
-    words = [''.join([' ', next(words)]) if not w else w for w in words_iter]
+    iwords = iter(text_.split(' '))
+    words = [''.join([' ', next(iwords)]) if not w else w for w in iwords]
 
     if not words:
         return
