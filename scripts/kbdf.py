@@ -71,11 +71,10 @@ def insert_text(text):
 def switch_keyboard_layout():
     pyautogui.hotkey('capslock')  # Change to your keyboard combo
     time.sleep(0.05)
-    """
-    """
 
 
 def main(mode='line'):
+    # save current clipboard content
     clipboard_backup = clipboard.paste()
 
     up_modifiers()
@@ -95,22 +94,24 @@ def main(mode='line'):
     trailing_spaces = len(_text) - len(text)
 
     if not text:
+        # restore clipboard content
         clipboard.copy(clipboard_backup)
         return
 
-    word_list = iter(text.split(" "))
-    word_list = ["".join([" ", next(word_list)])
-                 if not w else w for w in word_list]
-    if not word_list:
+    words = iter(text.split(" "))
+    words = ["".join([" ", next(words)])
+             if not w else w for w in words]
+    if not words:
+        # restore clipboard content
         clipboard.copy(clipboard_backup)
         return
 
     result = []
     if mode == 'word':
-        result = word_list[:-1]
-        word_list = word_list[-1:]
+        result = words[:-1]
+        words = words[-1:]
 
-    for word in word_list:
+    for word in words:
         if is_RU(word):
             word = word.translate(RU_EN)
         else:
@@ -126,6 +127,7 @@ def main(mode='line'):
     insert_text(text)
     switch_keyboard_layout()
 
+    # restore clipboard content
     clipboard.copy(clipboard_backup)
 
 
