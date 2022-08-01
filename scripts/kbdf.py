@@ -1,4 +1,4 @@
-#!python3
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
 Install:
@@ -44,9 +44,37 @@ def is_RU(word):
 
 
 def up_modifiers():
-    pyautogui.press(['ctrl']*2)
-    pyautogui.press(['alt']*2)
-    pyautogui.press(['shift']*2)
+    pyautogui.press(['ctrl'] * 2)
+    # pyautogui.press(['alt']*2)
+    pyautogui.press(['shift'] * 2)
+
+
+def select_text():
+    pyautogui.hotkey('shiftleft', 'home')
+    time.sleep(0.05)
+
+
+def get_selected_text():
+    clipboard.copy("")
+    pyautogui.hotkey('ctrl', 'c')
+    time.sleep(0.05)
+    _text = clipboard.paste()
+    return _text
+
+
+def insert_text(text):
+    clipboard.copy(text)
+    pyautogui.hotkey('ctrl', 'v')
+    time.sleep(0.05)
+
+
+def switch_keyboard_layout():
+    """ Set Hotkey for Keyboard Layout switch after translation
+    """
+    pyautogui.hotkey('capslock')  # Change to your keyboard combo
+    time.sleep(0.05)
+    """
+    """
 
 
 def main(mode='line'):
@@ -54,13 +82,16 @@ def main(mode='line'):
 
     up_modifiers()
 
+    _text = None
     if mode != 'selection':
-        pyautogui.hotkey('shiftleft', 'home')
-        time.sleep(0.05)
+        if mode == 'line':
+            _text = get_selected_text()
 
-    pyautogui.hotkey('ctrl', 'c')
-    time.sleep(0.05)
-    _text = clipboard.paste()
+        if not _text:
+            select_text()
+
+    if not _text:
+        _text = get_selected_text()
 
     text = _text.rstrip(' ')
     trailing_spaces = len(_text) - len(text)
@@ -90,24 +121,14 @@ def main(mode='line'):
         result.append(word)
 
     if trailing_spaces:
-        result.append(" "*trailing_spaces)
+        result.append(" " * trailing_spaces)
 
     text = " ".join(result)
 
-    clipboard.copy(text)
-
-    pyautogui.hotkey('ctrl', 'v')
-    time.sleep(0.05)
-
-    """ Set Hotkey for Keyboard Layout switch after translation
-    """
-    # pyautogui.hotkey('capslock')  # Uncomment this
-    time.sleep(0.05)
-    """
-    """
+    insert_text(text)
+    switch_keyboard_layout()
 
     clipboard.copy(clipboard_backup)
-    time.sleep(0.05)
 
 
 if __name__ == "__main__":
