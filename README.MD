@@ -26,7 +26,7 @@ Example Usage
 =============
 You must bind it to some hotkey
 
-`kbdf.py line` - translate last typed line (default)<br/>
+`kbdf.py line` - translate last typed line, or selection if exists (default)<br/>
 `kbdf.py word` - translate last typed word<br/>
 `kbdf.py selection` - translate selected text<br/>
 
