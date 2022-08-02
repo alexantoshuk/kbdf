@@ -32,6 +32,8 @@ RU = """ёйцукенгшщзхъфывапролджэячсмитьбю.ЁЙ�
 EN_RU = str.maketrans(EN, RU)
 RU_EN = str.maketrans(RU, EN)
 
+DELAY = 0.01
+
 
 def is_RU(word):
     chars = "ёйцукенгшщзхъфывапролджэячсмитьбю"
@@ -52,25 +54,25 @@ def release_modifiers():
 
 def select_text():
     pyautogui.hotkey('shiftleft', 'home')
-    time.sleep(0.05)
+    time.sleep(DELAY)
 
 
 def get_selected_text():
     clipboard.copy('')  # empty clipboard
     pyautogui.hotkey('ctrl', 'c')
-    time.sleep(0.05)
+    time.sleep(DELAY)
     return clipboard.paste()
 
 
 def insert_text(text):
     clipboard.copy(text)
     pyautogui.hotkey('ctrl', 'v')
-    time.sleep(0.05)
+    time.sleep(DELAY)
 
 
 def switch_keyboard_layout():
     pyautogui.hotkey('capslock')  # change it to your keyboard combo
-    time.sleep(0.05)
+    time.sleep(DELAY)
 
 
 def translate(text):
