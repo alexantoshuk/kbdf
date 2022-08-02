@@ -46,6 +46,7 @@ Simple!
 Limitations
 ============
 * For now it can switch only between Russian and English keyboard layouts.
+* Doesn't work under Wayland on Linux.
 * It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+c</kbd> <kbd>ctrl+v</kbd>).
 * Undefined behavior when bind this script to hotkeys with <kbd>super</kbd> modifier.
 
