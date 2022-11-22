@@ -54,7 +54,7 @@ def release_modifiers():
 
 
 def select_text():
-    pyautogui.hotkey('shiftleft', 'home')
+    pyautogui.hotkey('shift', 'shift', 'home')
     time.sleep(DELAY)
 
 
