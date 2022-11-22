@@ -25,6 +25,7 @@ import pyautogui
 import pyperclip as clipboard
 import time
 import sys
+import platform
 
 EN = """`qwertyuiop[]asdfghjkl;'zxcvbnm,./~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?!@#$%^&"""
 RU = """ёйцукенгшщзхъфывапролджэячсмитьбю.ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,!"№;%:?"""
@@ -70,9 +71,15 @@ def insert_text(text):
     time.sleep(DELAY)
 
 
-def switch_keyboard_layout():
-    pyautogui.hotkey('capslock')  # change it to your keyboard combo
-    time.sleep(DELAY)
+if platform.system() == 'Windows':
+    def switch_keyboard_layout():
+        # change it to your keyboard combo
+        pyautogui.hotkey('altleft', 'shiftleft')
+        time.sleep(DELAY)
+else:
+    def switch_keyboard_layout():
+        pyautogui.hotkey('capslock')  # change it to your keyboard combo
+        time.sleep(DELAY)
 
 
 def translate(text):
