@@ -11,7 +11,7 @@ You can install it using pip:
 
 `pip install git+https://github.com/alexantoshuk/kbdf`
 
-Or manually download [kbdf.pyw](https://raw.githubusercontent.com/alexantoshuk/kbdf/master/scripts/kbdf.pyw) and make it executable:
+Or manually download [kbdf.pyw](https://github.com/alexantoshuk/kbdf/blob/master/scripts/kbdf.pyw) and make it executable:
 
 `cmod +x kbdf.pyw`
 
@@ -27,7 +27,7 @@ Also Linux needs the `xclip` installed.
 Example Usage
 =============
 On Linux: just bind it to some hotkey.<br/>
-On Windows: you can use [AutoHotkey](https://www.autohotkey.com) and put [caps.ahk](https://raw.githubusercontent.com/alexantoshuk/kbdf/caps.ahk) and [kbdf.ahk](https://raw.githubusercontent.com/alexantoshuk/kbdf/kbdf.ahk) to autostart.
+On Windows: you can use [AutoHotkey](https://www.autohotkey.com) and put [caps.ahk](https://github.com/alexantoshuk/kbdf/blob/master/caps.ahk) and [kbdf.ahk](https://github.com/alexantoshuk/kbdf/blob/master/kbdf.ahk) to autostart.
 
 `kbdf.pyw line` - translate last typed line, or selection if exists (default)<br/>
 `kbdf.pyw selection` - translate selected text<br/>
