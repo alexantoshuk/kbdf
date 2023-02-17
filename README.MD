@@ -1,7 +1,8 @@
 KBDF
 =========
-**kbdf** is a simple python script to translate text that was typed accidentally in wrong keyboard layout.<br/>For now its only support Russian and English keyboard layouts<br/>
+**kbdf** is a simple python script to translate text that was typed accidentally in wrong keyboard layout.<br/>For now its only support Russian and English keyboard layouts
 
+<br/>
 
 Install
 ============
@@ -21,6 +22,7 @@ Or manually download [kbdf.pyw](https://raw.githubusercontent.com/alexantoshuk/k
 
 Also Linux needs the `xclip` installed.
 
+<br/>
 
 Example Usage
 =============
@@ -30,6 +32,7 @@ On Windows: you can use [AutoHotkey](https://www.autohotkey.com) and put [caps.a
 `kbdf.pyw line` - translate last typed line, or selection if exists (default)<br/>
 `kbdf.pyw selection` - translate selected text<br/>
 
+<br/>
 
 How it works
 =============
@@ -43,6 +46,7 @@ Simple!
 6) Emit <kbd>ctrl+v</kbd> to replace selection with clipboard content.
 7) Restore clipboard content from backup.
 
+<br/>
 
 Limitations
 ============
@@ -51,6 +55,7 @@ Limitations
 * It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+c</kbd> <kbd>ctrl+v</kbd>).
 * Undefined behavior when bind this script to hotkeys with <kbd>super</kbd> modifier.
 
+<br/>
 
 Alternatives
 ============
