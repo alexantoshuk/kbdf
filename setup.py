@@ -3,7 +3,7 @@ from setuptools import setup
 setup(
     name='kbdf',
     version='0.6.0',
-    scripts=['scripts/kbdf.py'],
+    scripts=['scripts/kbdf.pyw'],
     license='MIT',
     description='Python script to translate text that was typed accidentally in wrong keyboard layout.',
     long_description=open('README.MD').read(),
