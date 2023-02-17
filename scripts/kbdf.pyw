@@ -29,6 +29,7 @@ import platform
 
 EN = """`qwertyuiop[]asdfghjkl;'zxcvbnm,./~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>?!@#$%^&"""
 RU = """ёйцукенгшщзхъфывапролджэячсмитьбю.ЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ,!"№;%:?"""
+RU_CHARS = frozenset(RU[:33])
 
 EN_RU = str.maketrans(EN, RU)
 RU_EN = str.maketrans(RU, EN)
@@ -37,9 +38,8 @@ DELAY = 0.01
 
 
 def is_RU(word):
-    chars = "ёйцукенгшщзхъфывапролджэячсмитьбю"
     for char in word.lower():
-        if char in chars:
+        if char in RU_CHARS:
             return True
     return False
 
