@@ -5,14 +5,14 @@ KBDF
 
 Install
 ============
-**kbdf** supports Python3 on Linux and Windows(not tested yet).<br/>
+**kbdf** supports Python3 on Linux and Windows.<br/>
 You can install it using pip:
 
 `pip install git+https://github.com/alexantoshuk/kbdf`
 
-Or manually download [kbdf.py](https://raw.githubusercontent.com/alexantoshuk/kbdf/master/scripts/kbdf.py) and make it executable:
+Or manually download [kbdf.pyw](https://raw.githubusercontent.com/alexantoshuk/kbdf/master/scripts/kbdf.pyw) and make it executable:
 
-`cmod +x kbdf.py`
+`cmod +x kbdf.pyw`
 
 ...and install python dependencies:
 
@@ -24,10 +24,11 @@ Also Linux needs the `xclip` installed.
 
 Example Usage
 =============
-You must bind it to some hotkey
+On Linux: just bind it to some hotkey.<br/>
+On Windows: you can use [AutoHotkey](https://www.autohotkey.com) and put [caps.ahk](https://raw.githubusercontent.com/alexantoshuk/kbdf/caps.ahk) and [kbdf.ahk](https://raw.githubusercontent.com/alexantoshuk/kbdf/kbdf.ahk) to autostart.
 
-`kbdf.py line` - translate last typed line, or selection if exists (default)<br/>
-`kbdf.py selection` - translate selected text<br/>
+`kbdf.pyw line` - translate last typed line, or selection if exists (default)<br/>
+`kbdf.pyw selection` - translate selected text<br/>
 
 
 How it works
