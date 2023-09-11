@@ -13,7 +13,7 @@ You can install it using pip:
 
 Or manually download [kbdf.pyw](https://github.com/alexantoshuk/kbdf/blob/master/scripts/kbdf.pyw) and make it executable:
 
-`cmod +x kbdf.pyw`
+`chmod +x kbdf.pyw`
 
 ...and install python dependencies:
 
