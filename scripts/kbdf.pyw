@@ -8,7 +8,7 @@ Install:
             pip install pynput
             pip install pyperclip
             Install 'xclip' on Linux Xorg
-            Install 'wl-clipboard' on Linux Wayland 
+            Install 'wl-clipboard' or 'gpaste' on Linux Wayland 
         Make kbdf.py executable on Linux:
             chmod +x kbdf.py
 
@@ -23,7 +23,7 @@ Usage:
 """
 
 from pynput.keyboard import Key, Controller
-import pyperclip as clipboard
+import pyperclipfix as clipboard
 import time
 import sys
 import logging
@@ -85,8 +85,10 @@ def get_selected_text():
     with KBD.pressed(Key.ctrl):
         with KBD.pressed(Key.insert):
             time.sleep(DELAY)
-
-    return clipboard.paste()
+    try:
+        return clipboard.paste()
+    except:
+        return ''
 
 
 def insert_text(text):
@@ -136,7 +138,7 @@ def translate(text):
 
 
 def main(mode='line'):
-    logging.debug(f"start")
+    logging.debug("start")
     try:
         clipboard_backup = clipboard.paste()  # save current clipboard content
     except:
@@ -161,7 +163,7 @@ def main(mode='line'):
         switch_keyboard_layout()
 
     clipboard.copy(clipboard_backup)  # restore clipboard content
-    logging.debug(f"end")
+    logging.debug("end")
 
 
 if __name__ == "__main__":
