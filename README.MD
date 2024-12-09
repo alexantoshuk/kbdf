@@ -17,10 +17,10 @@ Or manually download [kbdf.pyw](https://github.com/alexantoshuk/kbdf/blob/master
 
 ...and install python dependencies:
 
-`pip install pyautogui`<br/>
-`pip install pyperclip`
+`pip install pynput`<br/>
+`pip install pyperclipfix`
 
-Also Linux needs the `xclip` installed.
+Also Linux needs the `xclip` installed on Xorg. `wl-clipboard` or `gpaste` on Wayland .
 
 <br/>
 
