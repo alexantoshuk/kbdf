@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!/usr/bin/python3
 # -*- coding: utf-8 -*-
 """
 Install:
@@ -14,7 +14,7 @@ Install:
 
 Usage:
 
-    `kbdf.py` - translate last typed line, or selection if exists
+    `kbdf.py line` - translate last typed line, or selection if exists (default)
 
     `kbdf.py selection` - translate selected text
 
@@ -72,6 +72,7 @@ def select_text():
     with KBD.pressed(Key.shift):
         with KBD.pressed(Key.home):
             time.sleep(DELAY)
+    time.sleep(DELAY)
 
 
 def get_selected_text():
@@ -80,6 +81,8 @@ def get_selected_text():
     with KBD.pressed(Key.ctrl):
         with KBD.pressed(Key.insert):
             time.sleep(DELAY)
+    time.sleep(DELAY)
+
     try:
         return clipboard.paste()
     except:
@@ -92,13 +95,13 @@ def insert_text(text):
     with KBD.pressed(Key.shift):
         with KBD.pressed(Key.insert):
             time.sleep(DELAY)
+    time.sleep(DELAY)
 
 
 def switch_keyboard_layout():
     time.sleep(DELAY)
-    KBD.press(Key.caps_lock)  # change it to your keyboard combo
-    time.sleep(DELAY)
-    KBD.release(Key.caps_lock)
+    with KBD.pressed(Key.caps_lock):  # change it to your keyboard combo
+        time.sleep(DELAY)
     time.sleep(DELAY)
     return
 
