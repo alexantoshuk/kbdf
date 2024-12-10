@@ -31,14 +31,14 @@ from pynput.keyboard import Controller, Key
 
 from pathlib import Path
 
-logfile = str(Path.home().joinpath("kbdf.log"))
-logging.basicConfig(
-    filename=logfile,
-    filemode="a",
-    format="%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s",
-    datefmt="%H:%M:%S",
-    level=logging.DEBUG,
-)
+# logfile = str(Path.home().joinpath("kbdf.log"))
+# logging.basicConfig(
+#     filename=logfile,
+#     filemode="a",
+#     format="%(asctime)s,%(msecs)d %(name)s %(levelname)s %(message)s",
+#     datefmt="%H:%M:%S",
+#     level=logging.DEBUG,
+# )
 
 
 EN = r"""`qwertyuiop[]asdfghjkl;'zxcvbnm,.~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>#&ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ№?"""
