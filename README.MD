@@ -18,9 +18,15 @@ Or manually download [kbdf.pyw](https://github.com/alexantoshuk/kbdf/blob/master
 ...and install python dependencies:
 
 `pip install pynput`<br/>
-`pip install pyperclip`
+`pip install pyperclip`<br/>
 
-Also Linux needs the `xclip` installed on Xorg, `wl-clipboard` on Wayland .
+<br/>
+
+Linux dependencies
+============
+
+Install `xclip` with your package manager on Xorg.<br/>
+Install `wl-clipboard` with your package manager on Wayland.
 
 <br/>
 
@@ -29,8 +35,8 @@ Example Usage
 On Linux: just bind it to some hotkey.<br/>
 On Windows: you can use [AutoHotkey](https://www.autohotkey.com) and put [caps.ahk](https://github.com/alexantoshuk/kbdf/blob/master/caps.ahk) and [kbdf.ahk](https://github.com/alexantoshuk/kbdf/blob/master/kbdf.ahk) to autostart.
 
-`kbdf.pyw line` - translate last typed line, or selection if exists (default)<br/>
-`kbdf.pyw selection` - translate selected text<br/>
+`kbdf.pyw` - translate last typed line, or selection if exists<br/>
+`kbdf.pyw selection` - translate selected text only<br/>
 
 <br/>
 
@@ -39,12 +45,14 @@ How it works
 Simple!
 
 1) Backup current clipboard content.
-2) Emit <kbd>shift+home</kbd> for line selection (in 'line' mode only).
-3) Emit <kbd>ctrl+insert</kbd> to copy selection to clipboard.
-4) Get clipboard content and translate text word by word.
-5) Write translated text to clipboard.
-6) Emit <kbd>shift+insert</kbd> to replace selection with clipboard content.
-7) Restore clipboard content from backup.
+2) Emit <kbd>ctrl+insert</kbd> to copy selection to clipboard.
+3) If selection is not empty, go to (6).
+4) Emit <kbd>shift+home</kbd> for line selection (if not in 'selection' mode).
+5) Emit <kbd>ctrl+insert</kbd> to copy selection to clipboard.
+6) Get clipboard content and translate text word by word.
+7) Write translated text to clipboard.
+8) Emit <kbd>shift+insert</kbd> to replace selection with clipboard content.
+9) Restore clipboard content from backup.
 
 <br/>
 

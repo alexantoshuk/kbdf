@@ -14,7 +14,7 @@ Install:
 
 Usage:
 
-    `kbdf.py line` - translate last typed line, or selection if exists (default)
+    `kbdf.py` - translate last typed line, or selection if exists
 
     `kbdf.py selection` - translate selected text
 
