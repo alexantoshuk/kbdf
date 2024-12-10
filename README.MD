@@ -18,9 +18,9 @@ Or manually download [kbdf.pyw](https://github.com/alexantoshuk/kbdf/blob/master
 ...and install python dependencies:
 
 `pip install pynput`<br/>
-`pip install pyperclipfix`
+`pip install pyperclip`
 
-Also Linux needs the `xclip` installed on Xorg. `wl-clipboard` or `gpaste` on Wayland .
+Also Linux needs the `xclip` installed on Xorg, `wl-clipboard` on Wayland .
 
 <br/>
 
@@ -40,10 +40,10 @@ Simple!
 
 1) Backup current clipboard content.
 2) Emit <kbd>shift+home</kbd> for line selection (in 'line' mode only).
-3) Emit <kbd>ctrl+c</kbd> to copy selection to clipboard.
+3) Emit <kbd>ctrl+insert</kbd> to copy selection to clipboard.
 4) Get clipboard content and translate text word by word.
 5) Write translated text to clipboard.
-6) Emit <kbd>ctrl+v</kbd> to replace selection with clipboard content.
+6) Emit <kbd>shift+insert</kbd> to replace selection with clipboard content.
 7) Restore clipboard content from backup.
 
 <br/>
@@ -51,15 +51,14 @@ Simple!
 Limitations
 ============
 * For now it can switch only between Russian and English keyboard layouts.
-* Doesn't work under Wayland on Linux.
-* It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+c</kbd> <kbd>ctrl+v</kbd>).
-* Undefined behavior when bind this script to hotkeys with <kbd>super</kbd> modifier.
+* It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+insert</kbd> <kbd>shift+insert</kbd>).
+* Undefined behavior when bind this script to hotkeys with <kbd>super</kbd> and some other modifiers. I am just bind it to F12.
 
 <br/>
 
 Alternatives
 ============
-The alternatives is much more functional. But goal of this project is simplicity, stability, work on Linux and Windows. And in my opinion, automatic switching creates more problems than it solves, so in **kbdf** there is no such possibility.
+The alternatives is much more functional. But goal of this project is simplicity, stability, work on Linux (Xorg and Wayland) and Windows. And in my opinion, automatic switching creates more problems than it solves, so in **kbdf** there is no such possibility.
 
 [PuntoSwitcher (Windows only)](https://yandex.ru/soft/punto/)<br/>
 [XNeur  (Linux only)](https://xneur.ru/)
