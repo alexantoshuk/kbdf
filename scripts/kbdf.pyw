@@ -8,26 +8,26 @@ Install:
             pip install pynput
             pip install pyperclip
             Install 'xclip' on Linux Xorg
-            Install 'wl-clipboard' or 'gpaste' on Linux Wayland 
+            Install 'wl-clipboard' or 'gpaste' on Linux Wayland
         Make kbdf.py executable on Linux:
             chmod +x kbdf.py
 
 Usage:
-    
+
     `kbdf.py line` - translate last typed line, or selection if exists (default)
 
     `kbdf.py selection` - translate selected text
-    
+
     Just bind it to some hotkey!
 
 """
 
-from pynput.keyboard import Key, Controller
-import pyperclipfix as clipboard
-import time
-import sys
 import logging
-from pathlib import Path
+import sys
+import time
+
+import pyperclipfix as clipboard
+from pynput.keyboard import Controller, Key
 
 # import platform
 # logfile = str(Path.home().joinpath("kbdf.log"))
@@ -59,7 +59,7 @@ def is_RU(s):
 def release_modifiers():
     """
     Release modifiers keys to prevent some strange bugs
-    # """
+    #"""
     # KBD.release(Key.ctrl)
     # KBD.release(Key.ctrl)
     # time.sleep(DELAY)
@@ -80,7 +80,7 @@ def select_text():
 
 
 def get_selected_text():
-    clipboard.copy('')  # empty clipboard
+    clipboard.copy("")  # empty clipboard
 
     with KBD.pressed(Key.ctrl):
         with KBD.pressed(Key.insert):
@@ -88,7 +88,7 @@ def get_selected_text():
     try:
         return clipboard.paste()
     except:
-        return ''
+        return ""
 
 
 def insert_text(text):
@@ -117,32 +117,34 @@ def translate(text):
 
     # return text.translate(EN_RU)
 
-    text_ = text.rstrip(' ')
+    text_ = text.rstrip(" ")
     if not text_:
         return
 
     trailing_spaces_num = len(text) - len(text_)
-    iwords = iter(text_.split(' '))
-    words = [''.join([' ', next(iwords)]) if not w else w for w in iwords]
+    iwords = iter(text_.split(" "))
+    words = ["".join([" ", next(iwords)]) if not w else w for w in iwords]
 
     if not words:
         return
 
-    result = [word.translate(RU_EN) if is_RU(
-        word) else word.translate(EN_RU) for word in words]
+    result = [
+        word.translate(RU_EN) if is_RU(word) else word.translate(EN_RU)
+        for word in words
+    ]
 
     if trailing_spaces_num:
-        result.append(' ' * trailing_spaces_num)
+        result.append(" " * trailing_spaces_num)
 
-    return ' '.join(result)
+    return " ".join(result)
 
 
-def main(mode='line'):
+def main(mode="line"):
     logging.debug("start")
     try:
         clipboard_backup = clipboard.paste()  # save current clipboard content
     except:
-        clipboard_backup = ''
+        clipboard_backup = ""
 
     logging.debug(f"clipboard_backup - '{clipboard_backup}'")
     release_modifiers()
@@ -150,7 +152,7 @@ def main(mode='line'):
     text = get_selected_text()
     logging.debug(f"get_selected_text - '{text}'")
 
-    if (mode == 'line') and (not text):
+    if (mode == "line") and (not text):
         select_text()
         text = get_selected_text()
         logging.debug(f"select_and_get_selected_text - '{text}'")
@@ -167,8 +169,7 @@ def main(mode='line'):
 
 
 if __name__ == "__main__":
-
-    mode = 'line'
+    mode = "line"
     if len(sys.argv) > 1:
         mode = sys.argv[1]
     main(mode)
