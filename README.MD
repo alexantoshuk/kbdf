@@ -25,8 +25,7 @@ Or manually download [kbdf.pyw](https://github.com/alexantoshuk/kbdf/blob/master
 Linux dependencies
 ============
 
-Install `xclip` with your package manager on Xorg.<br/>
-Install `wl-clipboard` with your package manager on Wayland.
+Install `xclip` with your package manager on Xorg or `wl-clipboard` on Wayland.
 
 <br/>
 
