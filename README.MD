@@ -66,7 +66,7 @@ Limitations
 ============
 - Only English <-> Russian.
 - Some punctuation keys are ambiguous across layouts (for example `/` vs `.`); unmapped characters are left as-is.
-- Does not work in terminals unless they support Shift+Home and Ctrl+Insert / Shift+Insert.
+- **Does not work reliably in terminals** (Windows Terminal, conhost, etc.): mouse selection is copy-only, so paste appends instead of replacing; line selection via Shift+Home also usually fails. Use kbdf in normal GUI text fields.
 - Hotkeys with Super/Win or sticky modifiers can interfere; F12 is a safe default.
 - Layout switch via API is implemented for Windows. On Linux it falls back to a CapsLock keypress (only useful if CapsLock changes layout). Use `--no-layout-switch` to disable.
 - Emulates global keystrokes in the focused window — avoid triggering it while typing a password field.
