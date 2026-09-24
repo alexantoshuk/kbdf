@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "kbdf"
-version = "0.12.0"
+version = "0.12.1"
 description = "Translate text typed accidentally in the wrong keyboard layout (EN/RU)."
 readme = "README.MD"
 license = { text = "MIT" }
