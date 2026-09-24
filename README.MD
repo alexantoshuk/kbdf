@@ -1,72 +1,83 @@
 KBDF
 =========
-**kbdf** is a simple python script to translate text that was typed accidentally in wrong keyboard layout.<br/>For now its only support Russian and English keyboard layouts
-
-<br/>
+**kbdf** is a small Python tool that fixes text typed accidentally in the wrong keyboard layout (English <-> Russian).
 
 Install
 ============
-**kbdf** supports Python3 on Linux and Windows.<br/>
-You can install it using pip:
+**kbdf** supports Python 3.8+ on Linux and Windows.
 
-`pip install git+https://github.com/alexantoshuk/kbdf`
+```bash
+pip install git+https://github.com/alexantoshuk/kbdf
+```
 
-Or manually download [kbdf.pyw](https://github.com/alexantoshuk/kbdf/blob/master/scripts/kbdf.pyw) and make it executable:
+After install you get:
+- `kbdf` — console entry point
+- `kbdfw` — same logic, Windows GUI entry point (no console window)
 
-`cmod +x kbdf.pyw`
+Linux also needs a clipboard tool: `xclip` (Xorg) or `wl-clipboard` (Wayland).
 
-...and install python dependencies:
-
-`pip install pynput`<br/>
-`pip install pyperclip`<br/>
-
-<br/>
-
-Linux dependencies
+Windows setup (hotkey)
 ============
+`pip install` alone does **not** add anything to Startup. Install [AutoHotkey v2](https://www.autohotkey.com/), then:
 
-Install `xclip` with your package manager on Xorg or `wl-clipboard` on Wayland.
+```bash
+pip install git+https://github.com/alexantoshuk/kbdf
+kbdf autostart install
+```
 
-<br/>
+```bash
+kbdf autostart status
+kbdf autostart uninstall
+```
 
-Example Usage
+This copies `kbdf.ahk` into the current user's Startup folder. Optional `kbdf/ahk/caps.ahk` is for manual use only (not installed to Startup) — **kbdf does not need it** (layout switch is via WinAPI).
+
+If `kbdfw` is not on `PATH`, put your Python `Scripts` folder on `PATH` (or edit the installed `kbdf.ahk` to use the full path to `kbdfw.exe`).
+
+Development
+===========
+```bash
+pip install -e ".[dev]"
+```
+
+Example usage
 =============
-On Linux: just bind it to some hotkey.<br/>
-On Windows: you can use [AutoHotkey](https://www.autohotkey.com) and put [caps.ahk](https://github.com/alexantoshuk/kbdf/blob/master/caps.ahk) and [kbdf.ahk](https://github.com/alexantoshuk/kbdf/blob/master/kbdf.ahk) to autostart.
+```bash
+kbdf              # translate selection, or current line if nothing selected
+kbdf selection    # translate selected text only
+kbdf --no-layout-switch
+```
 
-`kbdf.pyw` - translate last typed line, or selection if exists<br/>
-`kbdf.pyw selection` - translate selected text only<br/>
-
-<br/>
+Environment
+===========
+- `KBDF_NO_LAYOUT_SWITCH=1` — same as `--no-layout-switch`
 
 How it works
 =============
-Simple!
-
-1) Backup current clipboard content.
-2) Emit <kbd>ctrl+insert</kbd> to copy selection to clipboard.
-3) If selection is not empty, go to (6).
-4) Emit <kbd>shift+home</kbd> for line selection (if not in 'selection' mode).
-5) Emit <kbd>ctrl+insert</kbd> to copy selection to clipboard.
-6) Get clipboard content and translate text word by word.
-7) Write translated text to clipboard.
-8) Emit <kbd>shift+insert</kbd> to replace selection with clipboard content.
-9) Restore clipboard content from backup.
-
-<br/>
+1. Backup the clipboard.
+2. Send Ctrl+Insert to copy the selection.
+3. If the selection is empty and mode is `line`, send Shift+Home and copy again.
+4. Map characters EN <-> RU by physical key position (`str.maketrans`).
+5. Write the result to the clipboard and send Shift+Insert.
+6. Optionally switch keyboard layout to match the result (Windows: WinAPI; elsewhere: CapsLock fallback if bound to layout switch).
+7. Restore the clipboard.
 
 Limitations
 ============
-* For now it can switch only between Russian and English keyboard layouts.
-* It doesn't work in the terminal (except if terminal support to select line by <kbd>shift+home</kbd> and copy/paste by <kbd>ctrl+insert</kbd> <kbd>shift+insert</kbd>).
-* Undefined behavior when bind this script to hotkeys with <kbd>super</kbd> and some other modifiers. I am just bind it to F12.
-
-<br/>
+- Only English <-> Russian.
+- Some punctuation keys are ambiguous across layouts (for example `/` vs `.`); unmapped characters are left as-is.
+- Does not work in terminals unless they support Shift+Home and Ctrl+Insert / Shift+Insert.
+- Hotkeys with Super/Win or sticky modifiers can interfere; F12 is a safe default.
+- Layout switch via API is implemented for Windows. On Linux it falls back to a CapsLock keypress (only useful if CapsLock changes layout). Use `--no-layout-switch` to disable.
+- Emulates global keystrokes in the focused window — avoid triggering it while typing a password field.
 
 Alternatives
 ============
-The alternatives is much more functional. But goal of this project is simplicity, stability, work on Linux (Xorg and Wayland) and Windows. And in my opinion, automatic switching creates more problems than it solves, so in **kbdf** there is no such possibility.
+These alternatives are more feature-rich. This project aims for simplicity and stability on Linux (Xorg and Wayland) and Windows. Automatic layout switching while typing is intentionally not included.
 
-[PuntoSwitcher (Windows only)](https://yandex.ru/soft/punto/)<br/>
-[XNeur  (Linux only)](https://xneur.ru/)
+[Punto Switcher (Windows)](https://yandex.ru/soft/punto/)  
+[XNeur (Linux)](https://xneur.ru/)
 
+License
+=======
+MIT — see `LICENSE.txt`.

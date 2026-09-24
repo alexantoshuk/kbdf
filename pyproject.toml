@@ -1,0 +1,52 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kbdf"
+version = "0.12.0"
+description = "Translate text typed accidentally in the wrong keyboard layout (EN/RU)."
+readme = "README.MD"
+license = { text = "MIT" }
+authors = [
+    { name = "Alexander Antoshuk", email = "alexander.antoshuk@gmail.com" },
+]
+requires-python = ">=3.8"
+keywords = ["keyboard", "layout", "translate", "russian", "hotkey"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Environment :: Console",
+    "Intended Audience :: End Users/Desktop",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: POSIX :: Linux",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Topic :: Utilities",
+]
+dependencies = [
+    "pyperclip",
+    "pynput",
+]
+
+[project.urls]
+Homepage = "https://github.com/alexantoshuk/kbdf"
+Repository = "https://github.com/alexantoshuk/kbdf"
+
+[project.scripts]
+kbdf = "kbdf.cli:main"
+
+[project.gui-scripts]
+kbdfw = "kbdf.cli:main"
+
+[project.optional-dependencies]
+dev = ["pytest>=7"]
+
+[tool.setuptools.packages.find]
+include = ["kbdf*"]
+
+[tool.setuptools.package-data]
+kbdf = ["ahk/*.ahk"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
