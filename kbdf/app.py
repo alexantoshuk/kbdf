@@ -68,7 +68,19 @@ def _hotkey(*keys: Key) -> None:
 
 
 def select_line() -> None:
-    _hotkey(Key.shift, Key.home)
+    """Select the current line from any caret position (Home, then Shift+End)."""
+    _hotkey(Key.home)
+    _hotkey(Key.shift, Key.end)
+
+
+def _copy_line_without_selection(text: str) -> bool:
+    """
+    True when the probe copy likely came from an editor that copies the whole
+    current line (including EOL) when nothing is selected — e.g. Zed, VS Code.
+
+    In that case there is no selection to replace, so paste would append.
+    """
+    return bool(text) and text.endswith(("\n", "\r"))
 
 
 def copy_selection(*, expect_text: bool = False) -> str:
@@ -129,6 +141,10 @@ def run(mode: str = "line", switch_layout: bool = True) -> int:
         if mode == "line" and not text:
             select_line()
             text = copy_selection(expect_text=True)
+        elif mode == "line" and _copy_line_without_selection(text):
+            # Probe got a line via empty-selection copy — not a real selection.
+            text = text.rstrip("\r\n")
+            select_line()
 
         translated = translate(text)
 
