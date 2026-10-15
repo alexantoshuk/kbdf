@@ -55,10 +55,10 @@ Environment
 How it works
 =============
 1. Backup the clipboard.
-2. Send Ctrl+Insert to copy the selection.
-3. If the selection is empty and mode is `line`, send Shift+Home and copy again.
+2. Send Ctrl+C to copy the selection (virtual-key C, independent of layout).
+3. If the selection is empty and mode is `line`, select the line (Home, then Shift+End) and copy again.
 4. Map characters EN <-> RU by physical key position (`str.maketrans`).
-5. Write the result to the clipboard and send Shift+Insert.
+5. Write the result to the clipboard and send Ctrl+V (virtual-key V).
 6. Optionally switch keyboard layout to match the result (Windows: WinAPI; elsewhere: CapsLock fallback if bound to layout switch).
 7. Restore the clipboard.
 
@@ -66,7 +66,7 @@ Limitations
 ============
 - Only English <-> Russian.
 - Some punctuation keys are ambiguous across layouts (for example `/` vs `.`); unmapped characters are left as-is.
-- **Does not work reliably in terminals** (Windows Terminal, conhost, etc.): mouse selection is copy-only, so paste appends instead of replacing; line selection via Shift+Home also usually fails. Use kbdf in normal GUI text fields.
+- **Does not work reliably in terminals** (Windows Terminal, conhost, etc.): Ctrl+C may interrupt the running process; mouse selection is often copy-only, so paste appends instead of replacing; line selection also usually fails. Use kbdf in normal GUI text fields.
 - Hotkeys with Super/Win or sticky modifiers can interfere; F12 is a safe default.
 - Layout switch via API is implemented for Windows. On Linux it falls back to a CapsLock keypress (only useful if CapsLock changes layout). Use `--no-layout-switch` to disable.
 - Emulates global keystrokes in the focused window — avoid triggering it while typing a password field.

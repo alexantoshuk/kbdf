@@ -6,7 +6,7 @@ import time
 from typing import Optional
 
 import pyperclip
-from pynput.keyboard import Controller, Key
+from pynput.keyboard import Controller, Key, KeyCode
 
 from .layout import switch_to_match_text
 from .translate import translate
@@ -14,6 +14,10 @@ from .translate import translate
 DELAY = 0.05
 CLIPBOARD_RETRIES = 4
 PASTE_SETTLE = 0.05
+
+# Virtual-key codes so Ctrl+C/V work regardless of keyboard layout.
+VK_C = KeyCode.from_vk(0x43)
+VK_V = KeyCode.from_vk(0x56)
 
 KBD = Controller()
 
@@ -49,7 +53,7 @@ def clipboard_paste() -> str:
     raise ClipboardError(f"failed to read clipboard: {last_error}")
 
 
-def _hotkey(*keys: Key) -> None:
+def _hotkey(*keys: Key | KeyCode) -> None:
     """Press a key combination; sleep once inside the final key and once after."""
     if not keys:
         return
@@ -85,14 +89,14 @@ def _copy_line_without_selection(text: str) -> bool:
 
 def copy_selection(*, expect_text: bool = False) -> str:
     """
-    Copy current selection via Ctrl+Insert.
+    Copy current selection via Ctrl+C (VK_C, layout-independent).
 
     When expect_text is False (selection probe), an empty clipboard is a valid
     result and is returned immediately — do not spin on retries.
     When True (after line select), poll a few times for the clipboard to fill.
     """
     clipboard_copy("")
-    _hotkey(Key.ctrl, Key.insert)
+    _hotkey(Key.ctrl, VK_C)
 
     polls = 3 if expect_text else 1
     for i in range(polls):
@@ -111,7 +115,7 @@ def copy_selection(*, expect_text: bool = False) -> str:
 
 def insert_text(text: str) -> None:
     clipboard_copy(text)
-    _hotkey(Key.shift, Key.insert)
+    _hotkey(Key.ctrl, VK_V)
     # Brief pause so the focused app can paste before clipboard restore.
     _sleep(PASTE_SETTLE)
 

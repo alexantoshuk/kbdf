@@ -2,5 +2,5 @@
 
 from .translate import EN_RU, translate
 
-__version__ = "0.12.2"
+__version__ = "0.13.0"
 __all__ = ["EN_RU", "translate", "__version__"]
